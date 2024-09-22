@@ -41,8 +41,7 @@ const registerFields = ref<FormField[][]>([
 
 function onRegister(formData: Record<string, any>) {
   isLoading.value = true;
-
-  // Simulate async operation
+  
   setTimeout(() => {
     console.log('Form data submitted:', formData);
     isLoading.value = false;
