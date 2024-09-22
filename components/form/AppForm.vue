@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit" class="app-form-container">
     <div v-for="(row, rowIndex) in fields" :key="rowIndex" class="app-form-row">
-      <div v-for="(field, colIndex) in row" :key="colIndex" class="form-col">
+      <div v-for="(field, colIndex) in row" :key="colIndex" class="app-form-col">
         <AppFormField
           :label="field.label"
           :class="field.class"
@@ -13,12 +13,13 @@
             v-bind="field.params"
             @input="validateField(field)"
             :error="field.error"
+            :disabled="props.formLoading"
           />
         </AppFormField>
       </div>
     </div>
     <!-- Используем слот footer с submitAction -->
-    <slot name="footer" :submit-action="() => handleSubmit(formData)" />
+    <slot name="footer" :submit-action="() => handleSubmit(formData)" :disabled="props.formLoading" :loading="props.formLoading"/>
   </form>
 </template>
 
@@ -36,7 +37,8 @@ import {
 // Пропсы формы
 const props = defineProps<{
   fields: FormField[][];
-  submitAction: (formData: Record<string, any>) => void; // Новый пропс для действия при отправке
+  submitAction: (formData: Record<string, any>) => void; 
+  formLoading?: boolean
 }>();
 
 // Реактивные данные формы

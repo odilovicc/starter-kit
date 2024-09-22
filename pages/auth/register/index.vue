@@ -1,61 +1,51 @@
 <template>
-  <FormContainer>
-    <FormField label="Логин">
-      <AppFormInputText
-        v-model="login"
-        prefix-icon="user"
-        :disabled="onFormDisabled"
-      />
-    </FormField>
-    <FormField label="Пароль">
-      <AppFormInputPassword
-        v-model="password"
-        prefix-icon="lock"
-        :eyes="true"
-        :disabled="onFormDisabled"
-      />
-    </FormField>
-    <FormField label="Повторите пароль">
-      <AppFormInputPassword
-        v-model="repeatPassword"
-        prefix-icon="lock"
-        :eyes="true"
-        :disabled="onFormDisabled"
-      />
-    </FormField>
-    <template #footer>
-      <AppButton
-        label="Регистрация"
-        type="primary"
-        class="w-full"
-        :loading="onFormDisabled"
-        :disabled="onFormDisabled"
-        @click="onSubmit"
-      />
-      <p class="mt-4">
-        У вас уже есть аккаунт?
-        <NuxtLink :to="{ name: RouterPaths.LOGIN }" class="app-link"
-          >Войти</NuxtLink
-        >
-      </p>
+  <AppForm :fields="registerFields" :submit-action="onRegister" :form-loading="isLoading">
+    <template #footer="{ submitAction }">
+      <AppButton @click="submitAction" :loading="isLoading" :disabled="isLoading" label="Регистрация" />
     </template>
-  </FormContainer>
+  </AppForm>
 </template>
+
 <script setup lang="ts">
-import { RouterPaths } from "~/types/router";
+import { ref } from 'vue';
+import { type FormField, FormFieldType, ValidationRuleType } from '~/types/form';
 
-const login = ref("");
-const password = ref("");
-const repeatPassword = ref("");
-const onFormDisabled = ref<boolean>(false);
+const isLoading = ref(false);
 
-function onSubmit() {
-  return new Promise((resolve, reject) => {
-    onFormDisabled.value = true;
-    setTimeout(() => {
-      onFormDisabled.value = false;
-      resolve(true);
-    }, 1000);
-  });
+const registerFields = ref<FormField[][]>([
+  [
+    {
+      type: FormFieldType.TEXT,
+      key: "email",
+      label: "Электронная почта",
+      validationRules: [ValidationRuleType.REQUIRED, ValidationRuleType.EMAIL],
+      params: {
+        clearable: true,
+        placeholder: "Электронная почта",
+        prefixIcon: "envelope",
+      },
+    },
+    {
+      type: FormFieldType.PASSWORD,
+      key: "password",
+      label: "Пароль",
+      validationRules: [ValidationRuleType.REQUIRED, ValidationRuleType.PASSWORD],
+      params: {
+        clearable: true,
+        placeholder: "Пароль",
+        prefixIcon: "lock",
+      },
+    },
+  ],
+]);
+
+function onRegister(formData: Record<string, any>) {
+  isLoading.value = true;
+
+  // Simulate async operation
+  setTimeout(() => {
+    console.log('Form data submitted:', formData);
+    isLoading.value = false;
+  }, 2000);
 }
 </script>
