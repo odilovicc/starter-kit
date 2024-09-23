@@ -34,7 +34,6 @@ const appFields = ref<FormField[][]>([
         placeholder: "Enter your email",
         prefixIcon: "envelope",
         inputType: "text",
-        clearable: true,
       },
     },
   ],

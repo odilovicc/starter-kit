@@ -31,7 +31,7 @@
         :disabled="props.disabled"
       />
     </div>
-    <div class="app-form-input-suffix" v-if="!!props.clearable && !!modelValue">
+    <div class="app-form-input-suffix" v-show="!!props.clearable && !!modelValue">
       <app-icon @click="onClear" icon="times" />
     </div>
   </div>
