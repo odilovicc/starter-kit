@@ -10,9 +10,13 @@
       </AppCard>
     </div>
   </div>
+
+  <PrimeToast/>
 </template>
 <script setup lang="ts">
+import useFirebaseClient from "~/composable/firebase";
 import { RouterPaths } from "~/types/router";
+import PrimeToast from 'primevue/toast'
 
 const route = useRoute();
 
@@ -25,5 +29,15 @@ const pageTitle = computed(() => {
       return "Регистрация";
       break;
   }
+});
+
+onMounted(() => {
+  if (!useFirebaseClient().auth.currentUser) {
+    navigateTo({ name: RouterPaths.LOGIN });
+  }
+  else {
+    navigateTo({ name: RouterPaths.DASHBOARD });
+  }
+
 });
 </script>

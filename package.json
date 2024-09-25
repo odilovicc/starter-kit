@@ -12,6 +12,8 @@
   "dependencies": {
     "@pinia/nuxt": "^0.5.4",
     "@primevue/themes": "^4.0.7",
+    "@vueuse/core": "^11.1.0",
+    "firebase": "^10.13.2",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.2",
     "primeicons": "^7.0.0",

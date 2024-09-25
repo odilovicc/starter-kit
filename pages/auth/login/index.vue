@@ -1,7 +1,9 @@
 <template>
-  <AppForm :fields="loginFields" :submit-action="onLogin">
+  <AppForm :fields="loginFields" :submit-action="onLogin" :form-loading="isLoading">
     <template #footer="{ submitAction }">
       <AppButton label="Авторизоваться" @click="submitAction" />
+      <p>Вы ещё не зарегистрированы? <NuxtLink :to="{name: RouterPaths.REGISTER}" class="app-link">Зарегистрируйтесь</NuxtLink></p>
+
     </template>
   </AppForm>
 </template>
@@ -13,17 +15,21 @@ import {
   ValidationRuleType,
   type FormField,
 } from "~/types/form";
+import { RouterPaths } from "~/types/router";
 
-// Определяем поля формы
+const {onUserLogin} = useAuthStore()
+const isLoading = ref(false)
+const toast = useToast()
+
 const loginFields = ref<FormField[][]>([
   [
     {
       type: FormFieldType.TEXT,
-      key: "email", // Используем уникальный ключ для каждого поля
-      label: "Email",
+      key: "email",
+      label: "Почта",
       validationRules: [ValidationRuleType.REQUIRED, ValidationRuleType.EMAIL],
       params: {
-        placeholder: "Email",
+        placeholder: "Почта",
         prefixIcon: "envelope",
         inputType: "text",
         clearable: true,
@@ -33,14 +39,14 @@ const loginFields = ref<FormField[][]>([
   [
     {
       type: FormFieldType.PASSWORD,
-      key: "password", // Используем уникальный ключ для каждого поля
-      label: "Password",
+      key: "password",
+      label: "Пароль",
       validationRules: [
         ValidationRuleType.REQUIRED,
         ValidationRuleType.PASSWORD,
       ],
       params: {
-        placeholder: "Password",
+        placeholder: "Пароль",
         prefixIcon: "lock",
         inputType: "password",
         clearable: true,
@@ -51,6 +57,25 @@ const loginFields = ref<FormField[][]>([
 ]);
 
 function onLogin(formData: Record<string, any>) {
-  console.log("Form data:", formData); // Здесь будут данные формы
+  isLoading.value = true;
+  onUserLogin(formData)
+    .then((res) => {
+      toast.add({
+        severity: "success",
+        summary: "Успех",
+        detail: "Вы успешно зарегистрировались",
+        life: 3000,
+      });
+      navigateTo(RouterPaths.DASHBOARD);
+    })
+    .catch((res) => [
+      toast.add({
+        severity: "error",
+        summary: "Ошибка",
+        detail: `Произошла ошибка при регистрации | ${res.message}`,
+        life: 3000,
+      }),
+    ])
+    .finally(() => (isLoading.value = false));
 }
 </script>
