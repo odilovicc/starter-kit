@@ -66,7 +66,7 @@ function onLogin(formData: Record<string, any>) {
         detail: "Вы успешно зарегистрировались",
         life: 3000,
       });
-      navigateTo(RouterPaths.DASHBOARD);
+      navigateTo({name: RouterPaths.DASHBOARD});
     })
     .catch((res) => [
       toast.add({

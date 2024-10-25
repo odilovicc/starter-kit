@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-blue-500">
+  <div class="bg-[var(--secondary-color)]">
     <div
       class="container flex justify-center items-center mx-auto w-full h-screen"
     >
