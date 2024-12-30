@@ -1,0 +1,79 @@
+.app-form {
+    &-container {
+        display flex
+        flex-direction column
+        gap 15px
+    }
+    &-row {
+        display flex
+        flex-direction column
+        gap 10px
+    }
+    &-field {
+        &-container {
+            display flex
+            flex-direction column
+            gap 5px
+        }
+        &-label {
+            font-size 16px
+            font-weight 600
+        }
+        &-error {
+            color var(--invalid)
+        }
+    }
+
+    &-input {
+        padding 0
+        border 1px solid #ccc
+        border-radius 8px
+        display flex
+        align-items center
+        justify-content space-between
+        // Versions
+        
+        &-focused {
+            border-color var(--primary-color) !important
+        }
+        &-outlined {
+            border-color var(--primary-color) !important
+        }
+        &-disabled {
+            opacity 0.5 !important
+        }
+        &-invalid {
+            border-color var(--invalid) !important
+        }
+        // Versions
+        &-content {
+            width 100%
+            input {
+                background transparent !important
+                border none !important
+                padding inherit !important
+                width 100% !important
+            }
+            .p-select, .p-inputtext, .p-inputnumber-input {
+                padding 8px 16px !important
+                width 100% !important
+                border none !important
+                box-shadow none !important
+            }
+            .p-select-label {
+                padding 0 !important
+            }
+        }
+        &-prefix-icon {
+            padding 0 10px
+            color var(--primary-color)
+        }
+        &-suffix {
+            color var(--primary-color)
+            padding 0 10px
+            &:hover {
+                cursor pointer
+            }
+        }
+    }
+}
