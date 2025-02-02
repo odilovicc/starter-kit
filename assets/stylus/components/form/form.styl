@@ -25,7 +25,7 @@
     }
 
     &-input {
-        padding 8px 16px 8px 8px
+        padding 8px 
         border 1px solid #ccc
         border-radius 8px
         display flex
@@ -48,15 +48,25 @@
         // Versions
         &-content {
             width 100%
-            input {
+            input.p-inputtext {
                 background transparent !important
                 border none !important
                 padding inherit !important
                 width 100% !important
+                box-shadow none !important
+            }
+
+            .app-form-input-dropdown {
+                box-shadow none !important
+                width 100%
+                padding 0 !important
+            }
+            div.app-form-input-dropdown.p-focus:not(.p-disabled).p-select {
+                border-color var(--primary-color) !important
             }
         }
         &-prefix-icon {
-            padding 0 10px
+            padding 0 10px 0 5px
             color var(--primary-color)
         }
         &-suffix {

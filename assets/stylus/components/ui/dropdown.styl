@@ -1,0 +1,46 @@
+.app-dropdown {
+    &-container {
+        width max-content
+        position relative
+    }
+    &-button {
+        padding 8px
+        border 1px solid #ccc
+        border-radius 8px
+        display flex
+        justify-content space-between
+        align-items center
+        gap 20px
+        width 100%
+
+        .app-icon i{
+            font-size 12px
+        }
+    }
+    &-option {
+        padding 5px 10px
+        border-radius 8px
+
+        &:hover {
+            cursor pointer
+            background #e3e3e3
+        }
+    }
+    &-content {
+        width 100%
+        background #fff
+        box-shadow 0 0 5px #ccc
+        border-radius 8px
+        padding 5px
+        position absolute
+        display flex
+        flex-direction column
+        gap 3px
+    }
+
+    // VERSIONS
+
+    &-no-border {
+        border none !important
+    }
+}

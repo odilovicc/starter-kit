@@ -7,4 +7,7 @@
     --secondary-color: #021526;
     --contrast-color: #6EACDA;
     --invalid: red;
+    --p-select-option-selected-background: var(--primary-color) !important;
+    --p-select-option-selected-focus-background: var(--primary-color) !important;
+    --p-select-option-selected-focus-color: #fff !important;
 }

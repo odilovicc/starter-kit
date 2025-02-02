@@ -17,3 +17,8 @@ export enum ValidationRuleType {
     EMAIL = 'email',
     PASSWORD = 'password'
 }
+
+export interface IDropdownList {
+    label?: string | number | null,
+    value?: string | number | null,
+}

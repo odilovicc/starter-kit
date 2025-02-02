@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-icon">
     <i :class="`pi pi-${props.icon}`"></i>
   </div>
 </template>
@@ -11,5 +11,8 @@ const props = defineProps<{
 </script>
 
 <style>
-
+.app-icon {
+  display: flex;
+  align-items: center;
+}
 </style>
