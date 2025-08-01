@@ -39,7 +39,7 @@
 
 ```bash
 # Клонирование репозитория
-git clone https://github.com/your-username/nuxt3-starter-kit.git
+git clone https://github.com/odilovicc/starter-kit
 cd nuxt3-starter-kit
 
 # Установка зависимостей
@@ -247,7 +247,7 @@ npm run generate
 Если у вас есть вопросы или предложения:
 
 - Создайте [Issue](https://github.com/odilovicc/starter-kit/issues)
-- Напишите на email: your-email@example.com
+- Напишите на email: baxtiyor.dev@mail.ru
 
 ---
 

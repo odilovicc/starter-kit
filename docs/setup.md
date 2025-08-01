@@ -31,7 +31,7 @@ git --version
 
 ```bash
 # Клонирование с GitHub
-git clone https://github.com/your-username/nuxt3-starter-kit.git
+git clone https://github.com/odilovicc/starter-kit
 cd nuxt3-starter-kit
 
 # Или создание нового проекта

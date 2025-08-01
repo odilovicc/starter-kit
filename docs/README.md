@@ -11,7 +11,7 @@
 ### Установка
 ```bash
 # Клонирование репозитория
-git clone <your-repo-url>
+git clone https://github.com/odilovicc/starter-kit
 cd starter-kit
 
 # Установка зависимостей

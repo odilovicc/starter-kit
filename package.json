@@ -67,14 +67,9 @@
     "starter-kit",
     "boilerplate"
   ],
-  "author": "Your Name",
+  "author": "Baxti",
   "license": "MIT",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/your-username/nuxt3-starter-kit.git"
-  },
-  "bugs": {
-    "url": "https://github.com/your-username/nuxt3-starter-kit/issues"
-  },
-  "homepage": "https://github.com/your-username/nuxt3-starter-kit#readme"
+    "type": "git"
+  }
 }
