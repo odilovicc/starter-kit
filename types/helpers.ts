@@ -23,4 +23,23 @@ type IDropdownNavLink = INavLink<{
     list: IDropdownList[] 
 }>;
 
+export interface IAnyObject {
+    [key: string]: any
+}
+
+export enum NotificationType {
+  SUCCESS = 'success',
+  INFO = 'info',
+  WARN = 'warn',
+  ERROR = 'error',
+}
+
+export interface INotificationItem {
+  type: NotificationType;
+  message: string;
+  hideTitle?: boolean;
+  life?: number;
+  detail?: string;
+}
+
 export type INavLinks = ILinkNavLink | IButtonNavLink | IDropdownNavLink;

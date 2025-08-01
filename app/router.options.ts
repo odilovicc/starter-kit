@@ -10,11 +10,6 @@ export default <RouterConfig>{
                 component: () => import('~/pages/index.vue'),
             },
             {
-                path: "/test",
-                name: RouterPaths.DEV_TEST,
-                component: () => import('~/pages/dev/test.vue'),
-            },
-            {
                 path: '/auth/',
                 component: () => import('~/pages/auth/layout.vue'),
                 redirect: RouterPaths.LOGIN,

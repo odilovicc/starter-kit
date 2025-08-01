@@ -1,6 +1,7 @@
 <template>
   <div
     :class="{
+      'app-form-input': true,
       ['app-form-input-' + props.inputType]: true,
       'app-form-input-focused': focused,
       'app-form-input-disabled': props.disabled,
@@ -11,69 +12,61 @@
       <app-icon
         :icon="props.prefixIcon"
         :class="{
-          'text-red-500': props.error,
+          'text-[var(--error)]': props.error,
         }"
       />
     </div>
-
     <div v-if="!!props.prefixIconImage" class="app-form-input-prefix-icon">
-      <app-icon :icon="props.prefixIcon" />
+      <app-icon :icon="props.prefixIconImage" />
     </div>
-
     <div class="app-form-input-content">
-      <Dropdown
-        v-model="model"
-        :options="props.list"
-        optionLabel="label"
+      <PrimeInputText
+        :modelValue="props.modelValue"
+        @update:modelValue="onChange"
         :placeholder="props.placeholder"
-        @focus="onFocus"
-        @blur="onBlur"
-        class="app-form-input-dropdown app-form-input"
-        :class="{
-          'app-form-input-invalid': props.error,
-        }"
+        @focus="focused = true"
+        @blur="focused = false"
         :disabled="props.disabled"
+        :mask="props.mask"
       />
     </div>
-
-    <div class="app-form-input-suffix" v-show="!!props.clearable && !!model">
+    <div
+      class="app-form-input-suffix"
+      v-show="!!props.clearable && !!props.modelValue"
+    >
       <app-icon @click="onClear" icon="times" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineProps, defineEmits } from 'vue';
-import Dropdown from 'primevue/dropdown';
-import type { IDropdownList } from '~/types/form';
+import { ref } from 'vue';
+import PrimeInputText from 'primevue/inputmask';
 
 const emit = defineEmits(['update:modelValue', 'change']);
 const props = defineProps<{
   prefixIcon?: string;
   prefixIconImage?: string;
+  type?: string;
   placeholder?: string;
-  modelValue?: any;
+  modelValue?: string | number | null;
   inputType?: string;
   clearable?: boolean;
   disabled?: boolean;
-  list?: IDropdownList[];
   error?: string | null;
+  currency?: string;
+  mask?: string;
 }>();
 
 const focused = ref<boolean>(false);
 
-const model = computed({
-  get: () => {
-    return props.modelValue;
-  },
-  set: (value) => {
-    emit('update:modelValue', value);
-    emit('change', value);
-  },
-});
+const onChange = (value: string | number | null) => {
+  emit('update:modelValue', value);
+  emit('change', value);
+};
 
-const onFocus = () => (focused.value = true);
-const onBlur = () => (focused.value = false);
-const onClear = () => (model.value = null);
+const onClear = () => {
+  emit('update:modelValue', '');
+  emit('change', '');
+};
 </script>
-
