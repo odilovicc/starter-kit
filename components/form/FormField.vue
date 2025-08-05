@@ -1,10 +1,10 @@
 <template>
-  <div class="app-form-field-container">
-    <label :class="['app-form-field-label ' + props.class]">
-      {{ props.label }}
+  <div class="mb-4 flex flex-col gap-1">
+    <label :class="['mb-1 text-sm font-semibold text-gray-700', props.class]">
+      {{ props.label }} <span class="text-[--invalid]" v-if="required">*</span>
     </label>
     <slot />
-    <p v-if="!!error" class="app-form-field-error">{{ error }}</p>
+    <p v-if="!!error" class="mt-1 text-xs text-[--invalid]">{{ error }}</p>
   </div>
 </template>
 <script setup lang="ts">
@@ -12,6 +12,6 @@ const props = defineProps<{
   class?: string;
   label: string;
   error?: string | null;
+  required?: boolean;
 }>();
 </script>
-<style src="~/assets/stylus/components/form/form.styl"></style>

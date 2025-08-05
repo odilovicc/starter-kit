@@ -8,21 +8,15 @@
       'app-form-input-invalid': props.error,
     }"
   >
-    <div v-if="!!props.prefixIcon" class="app-form-input-prefix-icon">
-      <app-icon
-        :icon="props.prefixIcon"
-        :class="{
-          'text-red-500': props.error,
-        }"
-      />
+    <div v-if="!!props.prefixIcon" class="text-primary mr-2">
+      <app-icon :icon="props.prefixIcon" :class="{ 'text-red-500': error }" />
     </div>
-
-    <div v-if="!!props.prefixIconImage" class="app-form-input-prefix-icon">
+    <div v-if="!!props.prefixIconImage" class="mr-2">
       <app-icon :icon="props.prefixIcon" />
     </div>
     <div class="app-form-input-content">
       <PrimeInputText
-        :value="modelValue"
+        :value="internalValue"
         @input="onChange"
         :type="props.type || 'text'"
         :placeholder="props.placeholder"
@@ -31,15 +25,20 @@
         :disabled="props.disabled"
       />
     </div>
-    <div class="app-form-input-suffix" v-show="!!props.clearable && !!modelValue">
-      <app-icon @click="onClear" icon="times" />
+    <div
+      v-if="!!props.clearable && !!internalValue"
+      class="hover:text-danger ml-2 cursor-pointer text-gray-400"
+      @click="onClear"
+    >
+      <app-icon icon="times" />
     </div>
   </div>
 </template>
-<script setup lang="ts">
-const PrimeInputText = defineAsyncComponent(() => import("primevue/inputtext"));
 
-const emit = defineEmits(["update:modelValue", "change"]);
+<script setup lang="ts">
+const PrimeInputText = defineAsyncComponent(() => import('primevue/inputtext'));
+
+const emit = defineEmits(['update:modelValue', 'change']);
 const props = defineProps<{
   prefixIcon?: string;
   prefixIconImage?: string;
@@ -49,19 +48,39 @@ const props = defineProps<{
   inputType?: string;
   clearable?: boolean;
   disabled?: boolean;
-  error?: string | null; // Добавляем error как пропс
+  error?: string | null;
+  initialValue?: any; // Исправлено название пропса
 }>();
+
 const focused = ref<boolean>(false);
+const internalValue = ref(props.initialValue || props.modelValue || null);
+
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    internalValue.value = newVal;
+  },
+);
+
+watch(
+  () => props.initialValue,
+  (newVal) => {
+    if (!props.modelValue) {
+      internalValue.value = newVal;
+    }
+  },
+);
 
 const onChange = ($event: any) => {
   const value = $event.target.value || null;
-  emit("update:modelValue", value);
-  emit("change", value);
+  internalValue.value = value;
+  emit('update:modelValue', value);
+  emit('change', value);
 };
+
 const onClear = ($event: any) => {
-  emit("update:modelValue", null);
-  emit("change", null);
+  internalValue.value = null;
+  emit('update:modelValue', null);
+  emit('change', null);
 };
 </script>
-
-<style src="~/assets/stylus/components/form/form.styl" />

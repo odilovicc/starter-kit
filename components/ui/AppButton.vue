@@ -1,6 +1,6 @@
 <template>
   <PrimeButton
-    :class="[`app-button-${type} p-button`]"
+    :class="[`app-button-${type} p-button app-button-size-${size}`]"
     :rounded="circle"
     :disabled="disabled"
   >
@@ -33,24 +33,32 @@
     </template>
   </PrimeButton>
 </template>
+
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue';
+
 const PrimeButton = defineAsyncComponent(() => import("primevue/button"));
-type ButtonType = "primary" | "info" | "success" | "warning" | "danger";
+
+type ButtonType = "primary" | "info" | "success" | "warning" | "danger" | "outlined" | "text-link" | "danger-link";
+type ButtonSize = "sm" | "md" | "lg" | "xl" | "2xl" | "custom";
 
 const props = withDefaults(
   defineProps<{
-    label: string;
+    label?: string;
     iconRight?: string;
     prefixIcon?: string;
     imageIcon?: string;
     type?: ButtonType;
+    size?: ButtonSize;
     circle?: boolean;
-    loading?: boolean
-    disabled?: boolean
+    loading?: boolean;
+    disabled?: boolean;
   }>(),
   {
     type: "primary",
+    size: "md",
   }
 );
-</script>
-<style src="~/assets/stylus/components/ui/button.styl" />
+</script> 
+
+<style src="~/assets/scss/components/button.scss" />

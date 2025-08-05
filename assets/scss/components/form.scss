@@ -1,0 +1,207 @@
+.app-form {
+    &-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    &-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &-field {
+        &-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        &-label {
+            font-size: 16px;
+        }
+
+        &-error {
+            color: var(--invalid);
+        }
+    }
+
+    &-input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .p-textarea {
+            border: none !important;
+            width: 100% !important;
+        }
+
+        &-focused {
+            border-color: var(--primary) !important;
+        }
+
+        &-outlined {
+            border-color: var(--primary) !important;
+        }
+
+        &-disabled {
+            opacity: 0.5 !important;
+        }
+
+        &-invalid {
+            border-color: var(--invalid) !important;
+        }
+
+        &-content {
+            width: 100%;
+
+            input.p-inputtext {
+                background: transparent !important;
+                border: none !important;
+                padding: inherit !important;
+                width: 100% !important;
+                box-shadow: none !important;
+            }
+
+            span.p-inputnumber {
+                width: 100%;
+            }
+
+            .app-form-input-dropdown {
+                box-shadow: none !important;
+                width: 100%;
+                padding: 0 !important;
+            }
+
+            div.app-form-input-dropdown.p-focus:not(.p-disabled).p-select {
+                border-color: var(--primary-color) !important;
+            }
+        }
+
+        &-prefix-icon {
+            padding: 0 10px 0 5px;
+            color: var(--primary-color);
+        }
+
+        &-suffix {
+            color: var(--primary-color);
+            padding: 0 10px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.p-select-option.p-select-option-selected {
+    background: #ebf8ff !important;
+    color: var(--primary) !important;
+}
+
+.app-form-input-invalid .app-form-content .p-select.app-form-input-dropdown {
+    border-color: var(--invalid) !important;
+}
+
+.app-form-input-multiselect {
+    border: 1px solid #ccc !important;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 !important;
+}
+
+/* Адаптивные стили для всех устройств */
+@media (max-width: 640px) {
+    .app-form {
+        &-container {
+            gap: 10px;
+        }
+
+        &-row {
+            gap: 8px;
+        }
+
+        &-field {
+            &-label {
+                font-size: 14px;
+            }
+
+            &-error {
+                font-size: 12px;
+            }
+        }
+
+        &-input {
+            padding: 6px;
+            border-radius: 6px;
+
+            &-content {
+
+                input.p-inputtext,
+                span.p-inputnumber,
+                .app-form-input-dropdown {
+                    font-size: 14px;
+                }
+            }
+
+            &-prefix-icon {
+                padding: 0 5px;
+            }
+
+            &-suffix {
+                padding: 0 5px;
+            }
+        }
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .app-form {
+        &-container {
+            gap: 12px;
+        }
+
+        &-row {
+            gap: 8px;
+        }
+
+        &-field {
+            &-label {
+                font-size: 15px;
+            }
+
+            &-error {
+                font-size: 13px;
+            }
+        }
+
+        &-input {
+            padding: 7px;
+
+            border-radius: 7px;
+
+            &-content {
+
+                input.p-inputtext,
+                span.p-inputnumber,
+                .app-form-input-dropdown {
+                    font-size: 15px;
+                }
+            }
+
+            &-prefix-icon {
+                padding: 0 8px 0 4px;
+            }
+
+            &-suffix {
+                padding: 0 8px;
+            }
+        }
+    }
+}

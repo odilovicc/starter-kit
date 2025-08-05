@@ -1,0 +1,88 @@
+.app-button {
+  &-primary {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+  }
+  &-outlined {
+    border-color: var(--primary) !important;
+    background: transparent !important;
+    color: var(--primary) !important;
+  }
+  &-text-link {
+    width: max-content !important;
+    background: transparent !important;
+    border: none !important;
+    color: var(--primary) !important;
+    padding: 0 !important;
+  }
+  &-danger-link {
+    width: max-content !important;
+    background: transparent !important;
+    border: none !important;
+    color: var(--danger) !important;
+    text-decoration: underline !important;
+    padding: 0 !important;
+  }
+
+  // Размеры кнопок
+  &-size-sm {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    .p-button-icon {
+      font-size: 0.875rem !important;
+    }
+    img.p-button-icon {
+      width: 0.875rem !important;
+      height: 0.875rem !important;
+    }
+  }
+  &-size-md {
+    padding: 0.5rem 1rem !important;
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+    .p-button-icon {
+      font-size: 1rem !important;
+    }
+    img.p-button-icon {
+      width: 1rem !important;
+      height: 1rem !important;
+    }
+  }
+  &-size-lg {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+    .p-button-icon {
+      font-size: 1.125rem !important;
+    }
+    img.p-button-icon {
+      width: 1.125rem !important;
+      height: 1.125rem !important;
+    }
+  }
+  &-size-xl {
+    padding: 1rem 2rem !important;
+    font-size: 1.25rem !important;
+    line-height: 2rem !important;
+    .p-button-icon {
+      font-size: 1.25rem !important;
+    }
+    img.p-button-icon {
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+    }
+  }
+  &-size-2xl {
+    padding: 1.25rem 2.5rem !important;
+    font-size: 1.5rem !important;
+    line-height: 2.25rem !important;
+    .p-button-icon {
+      font-size: 1.5rem !important;
+    }
+    img.p-button-icon {
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+    }
+  }
+}

@@ -5,7 +5,7 @@
       ['app-form-input-' + props.inputType]: true,
       'app-form-input-focused': focused,
       'app-form-input-disabled': props.disabled,
-      'app-form-input-invalid': props.error
+      'app-form-input-invalid': props.error,
     }"
   >
     <div v-if="!!props.prefixIcon" class="app-form-input-prefix-icon">
@@ -40,10 +40,10 @@
   </div>
 </template>
 <script setup lang="ts">
-const PrimeInputText = defineAsyncComponent(() => import("primevue/inputtext"));
+const PrimeInputText = defineAsyncComponent(() => import('primevue/inputtext'));
 
-const emit = defineEmits(["update:modelValue", "change"]);
-const inputType = ref<string>("password");
+const emit = defineEmits(['update:modelValue', 'change']);
+const inputType = ref<string>('password');
 const show = ref<boolean>(false);
 
 const props = defineProps<{
@@ -62,17 +62,16 @@ const focused = ref<boolean>(false);
 
 const onChange = ($event: any) => {
   const value = $event.target.value || null;
-  emit("update:modelValue", value);
-  emit("change", value);
+  emit('update:modelValue', value);
+  emit('change', value);
 };
 const onClear = ($event: any) => {
-  emit("update:modelValue", null);
-  emit("change", null);
+  emit('update:modelValue', null);
+  emit('change', null);
 };
 const showHide = () => {
   show.value = !show.value;
-  inputType.value = show.value ? "text" : "password";
+  inputType.value = show.value ? 'text' : 'password';
 };
 </script>
 
-<style src="~/assets/stylus/components/form/form.styl" />
